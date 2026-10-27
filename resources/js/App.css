@@ -1,0 +1,61 @@
+/* resources/js/App.css */
+
+/* Variáveis globais (ficam no :root, não pintam nada) */
+:root {
+    --lightgray: #D9D9D9;
+    --gray: #9c9c9c;
+    --orange: #f42f15;
+    --darkGrey: #464D53;
+    --caloryCard: #656565;
+    --planCard: linear-gradient(210.41deg, #fa5042 1.14%, #ff5439 100.75%);
+    --appColor: #3c3f45;
+}
+
+/* ⚠️ TUDO o que era global agora está dentro de .app-welcome */
+.app-welcome {
+    background-color: var(--appColor);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    overflow: hidden;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+.app-welcome .stroke-text {
+    color: transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+.app-welcome .btn {
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border: 4px solid transparent;
+    transition: 300ms all;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.app-welcome .btn:hover {
+    cursor: pointer;
+}
+
+.app-welcome .blur {
+    background: rgba(253, 78, 43, 0.69);
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(150px);
+    z-index: -9;
+}
+
+/* Esconder scrollbar — só dentro do Welcome */
+.app-welcome ::-webkit-scrollbar { display: none; }
+.app-welcome { scrollbar-width: none; }

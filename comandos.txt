@@ -1,0 +1,16 @@
+
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+
+
+
+
+
+
+
+
+
+Remove-Item -Recurse -Force node_modules\.vite -ErrorAction SilentlyContinue
+php artisan cache:clear
+npm run dev

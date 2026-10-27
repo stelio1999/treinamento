@@ -1,0 +1,94 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
+
+
+
+# Dependências
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ficheiros de ambiente e configuração local
+/.env
+/.env.backup
+/.env.production
+
+# Diretoria de cache e dados gerados pelo framework
+/storage/*.key
+/storage/app/*.json
+/storage/app/public/
+/storage/logs/
+/storage/framework/cache/
+/storage/framework/sessions/
+/storage/framework/testing/
+/storage/framework/views/
+/bootstrap/cache/
+
+# Diretoria de compilação de assets (se usares Vite ou Laravel Mix na raiz)
+/public/build/
+/public/hot
+/public/storage
+
+# IDEs e Editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+
+# Dependências
+/node_modules/
+
+# Produção / Build
+/dist/
+/build/
+
+# Ficheiros de ambiente locais
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs de pacotes
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDEs e Editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
