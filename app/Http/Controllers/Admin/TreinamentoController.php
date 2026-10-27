@@ -20,15 +20,15 @@ use Inertia\Inertia;
 class TreinamentoController extends Controller
 {
     public function index()
-{
-    $treinos = Treinamento::with(['aluno:id,name', 'blocos'])
-        ->orderByDesc('data_hora')
-        ->paginate(15);
+    {
+        $treinos = Treinamento::with(['aluno:id,name', 'blocos'])
+            ->orderByDesc('data_hora')
+            ->paginate(15);
 
-    return Inertia::render('Admin/Dashboard', [
-        'treinos' => $treinos,
-    ]);
-}
+        return Inertia::render('Admin/Dashboard', [
+            'treinos' => $treinos,
+        ]);
+    }
 
     public function create()
     {
@@ -59,8 +59,9 @@ class TreinamentoController extends Controller
 
             foreach ($data['blocos'] as $i => $bloco) {
                 $treino->blocos()->create([
-                    'ordem'    => $bloco['ordem'] ?? $i,
-                    'conteudo' => $bloco['conteudo'],
+                    'ordem'     => $bloco['ordem'] ?? $i,
+                    'conteudo'  => $bloco['conteudo'],
+                    'video_url' => $bloco['video_url'] ?? null,   // ✅
                 ]);
             }
 
@@ -130,8 +131,9 @@ class TreinamentoController extends Controller
             $treinamento->blocos()->delete();
             foreach ($data['blocos'] as $i => $bloco) {
                 $treinamento->blocos()->create([
-                    'ordem' => $bloco['ordem'] ?? $i,
-                    'conteudo' => $bloco['conteudo'],
+                    'ordem'     => $bloco['ordem'] ?? $i,
+                    'conteudo'  => $bloco['conteudo'],
+                    'video_url' => $bloco['video_url'] ?? null,   // ✅
                 ]);
             }
         });

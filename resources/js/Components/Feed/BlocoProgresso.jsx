@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Check, Loader2, Save, StickyNote } from 'lucide-react';
 import BlocoTexto from './BlocoTexto';
+import VideoYoutube from './VideoYoutube';
+
 
 export default function BlocoProgresso({
     bloco,
@@ -16,7 +18,7 @@ export default function BlocoProgresso({
     const [savingToggle, setSavingToggle] = useState(false);
     const [savingNota, setSavingNota] = useState(false);
     const [guardadoOk, setGuardadoOk] = useState(false);
-
+    const [videoExpandido, setVideoExpandido] = useState(false);
     const toggleConcluido = async () => {
         const novo = !concluido;
         setConcluido(novo);
@@ -57,11 +59,10 @@ export default function BlocoProgresso({
 
     return (
         <div
-            className={`rounded-2xl border transition ${
-                concluido
-                    ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/60 dark:bg-emerald-900/10'
-                    : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'
-            } p-3.5`}
+            className={`rounded-2xl border transition ${concluido
+                ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/60 dark:bg-emerald-900/10'
+                : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'
+                } p-3.5`}
         >
             <div className="flex items-start gap-3">
                 <button
@@ -69,11 +70,10 @@ export default function BlocoProgresso({
                     onClick={toggleConcluido}
                     disabled={savingToggle}
                     aria-label={concluido ? 'Desmarcar bloco' : 'Marcar bloco como concluído'}
-                    className={`shrink-0 w-6 h-6 rounded-md border-2 flex items-center justify-center transition ${
-                        concluido
-                            ? 'bg-emerald-500 border-emerald-500 text-white'
-                            : 'border-slate-300 dark:border-slate-600 text-transparent hover:border-emerald-500'
-                    }`}
+                    className={`shrink-0 w-6 h-6 rounded-md border-2 flex items-center justify-center transition ${concluido
+                        ? 'bg-emerald-500 border-emerald-500 text-white'
+                        : 'border-slate-300 dark:border-slate-600 text-transparent hover:border-emerald-500'
+                        }`}
                 >
                     {savingToggle ? (
                         <Loader2 size={14} className="animate-spin text-white" />
@@ -86,7 +86,20 @@ export default function BlocoProgresso({
                     <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
                         Bloco {Number(bloco.ordem) + 1}
                     </p>
-                    <BlocoTexto conteudo={bloco.conteudo} />
+
+                   {bloco.video_url && (
+    <div className="mb-3">
+        <VideoYoutube
+            url={bloco.video_url}
+            titulo={`Bloco ${Number(bloco.ordem) + 1}`}
+        />
+    </div>
+)}
+
+                    <div className="mt-2">
+                        <BlocoTexto conteudo={bloco.conteudo} />
+                    </div>
+
                 </div>
             </div>
 

@@ -12,12 +12,13 @@ import {
     ResponsiveContainer, PieChart, Pie, Cell, Tooltip,
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend,
 } from 'recharts';
+import VideoYoutube from '../../Components/Feed/VideoYoutube';   // ✅
 
 const CORES = {
     concluido: '#10b981',
-    pendente:  '#e2e8f0',
-    barra:     '#0A2540',
-    comNota:   '#f59e0b',
+    pendente: '#e2e8f0',
+    barra: '#0A2540',
+    comNota: '#f59e0b',
 };
 
 function CustomTooltip({ active, payload, label }) {
@@ -43,7 +44,7 @@ export default function ResultadoDetalhe({ treino, blocos = [] }) {
 
     const dadosPie = [
         { name: 'Concluídos', value: concluidos },
-        { name: 'Pendentes',  value: pendentes },
+        { name: 'Pendentes', value: pendentes },
     ];
 
     const dadosBarras = blocos.map((b) => ({
@@ -130,16 +131,20 @@ export default function ResultadoDetalhe({ treino, blocos = [] }) {
                             >
                                 <div className="flex items-start justify-between gap-2">
                                     <div className="flex items-center gap-2 min-w-0">
-                                        <div className={`shrink-0 w-6 h-6 rounded-md flex items-center justify-center ${
-                                            b.concluido
+                                        <div className={`shrink-0 w-6 h-6 rounded-md flex items-center justify-center ${b.concluido
                                                 ? 'bg-emerald-500 text-white'
                                                 : 'bg-slate-200 dark:bg-slate-700 text-slate-400'
-                                        }`}>
+                                            }`}>
                                             {b.concluido ? <Check size={14} strokeWidth={3} /> : <X size={14} strokeWidth={2.5} />}
                                         </div>
                                         <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 truncate">
                                             Bloco {Number(b.ordem) + 1}
                                         </p>
+                                        {b.video_url && (
+                                            <div className="mt-3">
+                                                <VideoYoutube url={b.video_url} titulo={`Bloco ${Number(b.ordem) + 1}`} />
+                                            </div>
+                                        )}
                                     </div>
 
                                     <motion.div

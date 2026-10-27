@@ -15,11 +15,18 @@ export default function CriarTreinamento({ alunos = [] }) {
         tipo: 'publico',
         aluno_id: '',
         imagem_fundo: null,
-        blocos: [{ conteudo: '', ordem: 0 }],
+        blocos: [{ conteudo: '', ordem: 0, video_url: '' }],   // ✅
     });
 
     const addBloco = () =>
-        setData('blocos', [...data.blocos, { conteudo: '', ordem: data.blocos.length }]);
+        setData('blocos', [...data.blocos, { conteudo: '', ordem: data.blocos.length, video_url: '' }]);
+
+    const updateVideo = (i, video_url) => {
+        const copy = [...data.blocos];
+        copy[i].video_url = video_url;
+        setData('blocos', copy);
+    };
+
 
     const updateBloco = (i, conteudo) => {
         const copy = [...data.blocos];
@@ -79,11 +86,10 @@ export default function CriarTreinamento({ alunos = [] }) {
                                 type="button"
                                 key={t}
                                 onClick={() => setData('tipo', t)}
-                                className={`flex-1 py-2 rounded-xl text-sm font-medium ${
-                                    data.tipo === t
+                                className={`flex-1 py-2 rounded-xl text-sm font-medium ${data.tipo === t
                                         ? 'bg-[#0A2540] text-white'
                                         : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700'
-                                }`}
+                                    }`}
                             >
                                 {t === 'publico' ? 'Público' : 'Privado'}
                             </button>
@@ -125,18 +131,36 @@ export default function CriarTreinamento({ alunos = [] }) {
 
                     <div className="space-y-3">
                         {data.blocos.map((b, i) => (
-                            <div key={i} className="space-y-2">
-                                <EditorTextoRico value={b.conteudo} onChange={(v) => updateBloco(i, v)} />
-                                <div className="flex items-center justify-between">
-                                    <BotaoIA texto={b.conteudo} onMelhorado={(v) => updateBloco(i, v)} />
-                                    {data.blocos.length > 1 && (
-                                        <button type="button" onClick={() => removeBloco(i)} className="text-xs text-red-500 flex items-center gap-1">
-                                            <Trash2 size={12} /> Remover
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
+    <div key={i} className="space-y-2">
+        <EditorTextoRico value={b.conteudo} onChange={(v) => updateBloco(i, v)} />
+
+        {/* ✅ Campo do vídeo do YouTube */}
+        <div>
+            <label className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
+                Vídeo do YouTube (opcional)
+            </label>
+            <input
+                type="url"
+                placeholder="https://www.youtube.com/watch?v=..."
+                value={b.video_url || ''}
+                onChange={(e) => updateVideo(i, e.target.value)}
+                className="mt-1 w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs"
+            />
+            {errors[`blocos.${i}.video_url`] && (
+                <p className="text-xs text-red-500 mt-1">{errors[`blocos.${i}.video_url`]}</p>
+            )}
+        </div>
+
+        <div className="flex items-center justify-between">
+            <BotaoIA texto={b.conteudo} onMelhorado={(v) => updateBloco(i, v)} />
+            {data.blocos.length > 1 && (
+                <button type="button" onClick={() => removeBloco(i)} className="text-xs text-red-500 flex items-center gap-1">
+                    <Trash2 size={12} /> Remover
+                </button>
+            )}
+        </div>
+    </div>
+))}
                     </div>
                 </div>
 

@@ -154,12 +154,13 @@ class ProgressoController extends Controller
             ->keyBy('bloco_id');
 
         $blocos = $treinamento->blocos->map(fn ($b) => [
-            'id' => $b->id,
-            'ordem' => $b->ordem,
-            'conteudo' => $b->conteudo,
-            'concluido' => $progressos[$b->id]->concluido ?? false,
-            'nota' => $progressos[$b->id]->nota ?? null,
-        ]);
+    'id' => $b->id,
+    'ordem' => $b->ordem,
+    'conteudo' => $b->conteudo,
+    'video_url' => $b->video_url,   // ✅
+    'concluido' => $progressos[$b->id]->concluido ?? false,
+    'nota' => $progressos[$b->id]->nota ?? null,
+]);
 
         return Inertia::render('Aluno/ResultadoDetalhe', [
             'treino' => [

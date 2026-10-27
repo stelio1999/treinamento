@@ -13,19 +13,20 @@ class StoreTreinamentoRequest extends FormRequest
     }
 
     public function rules(): array
-    {
-        return [
-            'titulo' => ['required', 'string', 'max:255'],
-            'descricao' => ['nullable', 'string'],
-            'data_hora' => ['required', 'date', 'after:now'],
-            'tipo' => ['required', 'in:publico,privado'],
-            'aluno_id' => ['required_if:tipo,privado', 'nullable', 'exists:users,id'],
-            'imagem_fundo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
-            'blocos' => ['required', 'array', 'min:1'],
-            'blocos.*.conteudo' => ['required', 'string'],
-            'blocos.*.ordem' => ['nullable', 'integer'],
-        ];
-    }
+{
+    return [
+        'titulo' => ['required', 'string', 'max:255'],
+        'descricao' => ['nullable', 'string'],
+        'data_hora' => ['required', 'date', 'after:now'],
+        'tipo' => ['required', 'in:publico,privado'],
+        'aluno_id' => ['required_if:tipo,privado', 'nullable', 'exists:users,id'],
+        'imagem_fundo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        'blocos' => ['required', 'array', 'min:1'],
+        'blocos.*.conteudo' => ['required', 'string'],
+        'blocos.*.ordem' => ['nullable', 'integer'],
+        'blocos.*.video_url' => ['nullable', 'string', 'url', 'max:500'],  // ✅
+    ];
+}
 
     public function messages(): array
     {

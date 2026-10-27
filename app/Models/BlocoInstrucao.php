@@ -12,10 +12,20 @@ class BlocoInstrucao extends Model
 
     protected $table = 'blocos_instrucao';
 
-    protected $fillable = ['treinamento_id', 'ordem', 'conteudo'];
+    protected $fillable = [
+        'treinamento_id',
+        'ordem',
+        'conteudo',
+        'video_url',   // ✅ novo
+    ];
 
     public function treinamento()
     {
         return $this->belongsTo(Treinamento::class);
+    }
+
+    public function progressos()
+    {
+        return $this->hasMany(ProgressoBloco::class, 'bloco_id');
     }
 }

@@ -13,16 +13,17 @@ class UpdateTreinamentoRequest extends FormRequest
     }
 
     public function rules(): array
-    {
-        return [
-            'titulo' => ['required', 'string', 'max:255'],
-            'descricao' => ['nullable', 'string'],
-            'data_hora' => ['required', 'date'],
-            'tipo' => ['required', 'in:publico,privado'],
-            'aluno_id' => ['required_if:tipo,privado', 'nullable', 'exists:users,id'],
-            'imagem_fundo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
-            'blocos' => ['required', 'array', 'min:1'],
-            'blocos.*.conteudo' => ['required', 'string'],
-        ];
-    }
+{
+    return [
+        'titulo' => ['required', 'string', 'max:255'],
+        'descricao' => ['nullable', 'string'],
+        'data_hora' => ['required', 'date'],
+        'tipo' => ['required', 'in:publico,privado'],
+        'aluno_id' => ['required_if:tipo,privado', 'nullable', 'exists:users,id'],
+        'imagem_fundo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        'blocos' => ['required', 'array', 'min:1'],
+        'blocos.*.conteudo' => ['required', 'string'],
+        'blocos.*.video_url' => ['nullable', 'string', 'url', 'max:500'],  // ✅
+    ];
+}
 }
