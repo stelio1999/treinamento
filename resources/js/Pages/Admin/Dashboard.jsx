@@ -53,7 +53,7 @@ export default function Dashboard({ treinos }) {
                         </div>
                         <Link
                             href={`/admin/treinamentos/${t.id}/editar`}
-                            className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                            className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800  !text-slate-900 !bg-white dark:!text-white dark:!bg-[#0A2540]"
                         >
                             <Pencil size={16} />
                         </Link>

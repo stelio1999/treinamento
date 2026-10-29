@@ -14,128 +14,127 @@ import { Link as ScrollLink } from "react-scroll";
 
 
 const Hero = () => {
-  const transition = { duration: 3, type: "spring" };
-  const mobile = window.innerWidth <= 768;
+    const transition = { duration: 3, type: "spring" };
+    const mobile = window.innerWidth <= 768;
 
-  return (
-    <div className="hero" id="home">
-      <div className="blur hero-blur"></div>
+    const scrollToContact = () => {
+        const el = document.getElementById('contact');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
-      <div className="left-h">
-        <Header />
+    const scrollToJoin = () => {
+  const el = document.getElementById('join-us');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+    return (
+        <div className="hero" id="home">
+            <div className="blur hero-blur"></div>
 
-        {/* faixa "o melhor" */}
-        <div className="the-best">
-          <motion.div
-            initial={{ left: mobile ? "178px" : "238px" }}
-            whileInView={{ left: "8px" }}
-            transition={{ ...transition, type: "tween" }}
-          ></motion.div>
-          <span>O MELHOR CLUBE DE FITNESS DA CIDADE</span>
+            <div className="left-h">
+                <Header />
+
+                {/* faixa "o melhor" */}
+                <div className="the-best">
+                    <motion.div
+                        initial={{ left: mobile ? "178px" : "238px" }}
+                        whileInView={{ left: "8px" }}
+                        transition={{ ...transition, type: "tween" }}
+                    ></motion.div>
+                    <span>O MELHOR CLUBE DE FITNESS DA CIDADE</span>
+                </div>
+
+                {/* texto principal */}
+                <div className="hero-text">
+                    <div>
+                        <span className="stroke-text">Molda </span>
+                        <span>o teu</span>
+                    </div>
+                    <div>
+                        <span>corpo ideal</span>
+                    </div>
+                    <div>
+                        <span>
+                            Aqui vamos ajudar-te a moldar e construir o corpo que sempre
+                            desejaste e a viver a vida em pleno.
+                        </span>
+                    </div>
+                </div>
+
+                {/* números */}
+                <div className="figures">
+                    <div>
+                        <span><NumberCounter end={140} start={100} delay={4} preFix="+" /></span>
+                        <span>treinadores especialistas</span>
+                    </div>
+                    <div>
+                        <span><NumberCounter end={978} start={878} delay={4} preFix="+" /></span>
+                        <span>membros inscritos</span>
+                    </div>
+                    <div>
+                        <span><NumberCounter end={50} delay={2} preFix="+" /></span>
+                        <span>programas de treino</span>
+                    </div>
+                </div>
+
+                {/* botões */}
+                <div className="hero-btns">
+                    {/* 1. Vai para a página de login (Inertia) */}
+                    <InertiaLink href="/login" className="btn">
+                        Começar agora
+                    </InertiaLink>
+
+                    {/* 2. Scroll suave até à secção de contacto */}
+                    <button type="button" onClick={scrollToContact} className="btn">
+                        Saber mais
+                    </button>
+                </div>
+            </div>
+
+            {/* lado direito */}
+            <div className="right-h">
+                <button
+                    type="button"
+                    onClick={scrollToJoin}
+                    className="btn"
+                >
+                    Inscreve-te já
+                </button>
+                <motion.div
+                    initial={{ right: "-1rem" }}
+                    whileInView={{ right: "4rem" }}
+                    transition={transition}
+                    className="heart-rate"
+                >
+                    <img src={heart} alt="" />
+                    <span>Batimento cardíaco</span>
+                    <span>116 bpm</span>
+                </motion.div>
+
+                <img className="hero-img " src={hero_image} alt="" />
+                <motion.img
+                    initial={{ right: mobile ? "11rem" : "11rem" }}
+                    whileInView={{ right: "20rem" }}
+                    transition={transition}
+                    className="hero-back"
+                    src={hero_back}
+                    alt=""
+                />
+
+                <motion.div
+                    initial={{ right: "32rem" }}
+                    whileInView={{ right: "28rem" }}
+                    transition={transition}
+                    className="calories"
+                >
+                    <img src={calories} alt="" />
+                    <div>
+                        <span>Calorias queimadas</span>
+                        <span>220 kcal</span>
+                    </div>
+                </motion.div>
+            </div>
         </div>
-
-        {/* texto principal */}
-        <div className="hero-text">
-          <div>
-            <span className="stroke-text">Molda </span>
-            <span>o teu</span>
-          </div>
-          <div>
-            <span>corpo ideal</span>
-          </div>
-          <div>
-            <span>
-              Aqui vamos ajudar-te a moldar e construir o corpo que sempre
-              desejaste e a viver a vida em pleno.
-            </span>
-          </div>
-        </div>
-
-        {/* números */}
-        <div className="figures">
-          <div>
-            <span><NumberCounter end={140} start={100} delay={4} preFix="+" /></span>
-            <span>treinadores especialistas</span>
-          </div>
-          <div>
-            <span><NumberCounter end={978} start={878} delay={4} preFix="+" /></span>
-            <span>membros inscritos</span>
-          </div>
-          <div>
-            <span><NumberCounter end={50} delay={2} preFix="+" /></span>
-            <span>programas de treino</span>
-          </div>
-        </div>
-
-        {/* botões */}
-<div className="hero-btns">
-  {/* 1. Vai para a página de login (Inertia) */}
-  <InertiaLink href="/login" className="btn">
-    Começar agora
-  </InertiaLink>
-
-  {/* 2. Scroll suave até à secção de contacto */}
-  <ScrollLink
-    to="contact"
-    spy={true}
-    smooth={true}
-    duration={600}
-    offset={-50}
-    className="btn"
-  >
-    Saber mais
-  </ScrollLink>
-</div>
-      </div>
-
-      {/* lado direito */}
-      <div className="right-h">
-<ScrollLink
-    className="btn"
-    to="join-us"
-    spy={true}
-    smooth={true}
-    duration={600}
-    offset={-50}
-  >
-    Inscreve-te já
-  </ScrollLink>
-        <motion.div
-          initial={{ right: "-1rem" }}
-          whileInView={{ right: "4rem" }}
-          transition={transition}
-          className="heart-rate"
-        >
-          <img src={heart} alt="" />
-          <span>Batimento cardíaco</span>
-          <span>116 bpm</span>
-        </motion.div>
-
-        <img className="hero-img" src={hero_image} alt="" />
-        <motion.img
-          initial={{ right: mobile ? "11rem" : "11rem" }}
-          whileInView={{ right: "20rem" }}
-          transition={transition}
-          className="hero-back"
-          src={hero_back}
-          alt=""
-        />
-
-        <motion.div
-          initial={{ right: "32rem" }}
-          whileInView={{ right: "28rem" }}
-          transition={transition}
-          className="calories"
-        >
-          <img src={calories} alt="" />
-          <div>
-            <span>Calorias queimadas</span>
-            <span>220 kcal</span>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Hero;

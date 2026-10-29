@@ -1,100 +1,225 @@
-.testimonials{
+/* resources/js/Components/Testimonials/Testimonials.css */
+/* ============================================================
+   TESTIMONIALS — 100% responsivo
+   Layout: 2 colunas (esq: texto · dir: imagem) → 1 coluna em mobile
+   ============================================================ */
+
+/* ---------- Container principal ---------- */
+.testimonials {
     display: flex;
-    gap: 1rem;
-    padding: 0 2rem;
-}
-.left-t{
-    display: flex;
-    flex: 1.1;
-    gap: 2rem;
-    flex-direction: column;
-    text-transform: uppercase;
-    color: white;
-}
-.left-t>:nth-child(1){
-    color: var(--orange);
-    font-weight: bold;
-}
-.left-t>:nth-child(2),
-.left-t>:nth-child(3){
-    font-weight: bold;
-    font-size: 3rem;
-}
-.left-t>:nth-child(4){
-    text-transform: none;
-    text-align: justify;
-    letter-spacing: 2px;
-    line-height: 40px;
-}
-.right-t{
-    flex:1;
-    position: relative;
-}
-.right-t>img{
-    position: absolute;
-    width: 17rem;
-    height: 20rem;
-    object-fit: cover;
-    right: 8rem;
-    top: 2rem;
-}
-.right-t>:nth-child(1)
-{
-    position: absolute;
-    width: 17rem;height: 20rem;
-    border: 2px solid orange;
-    background-color: transparent;
-    right: 9rem;
-    top: 0.9rem;
-}
-.right-t>:nth-child(2)
-{
-    position: absolute;
-    width: 17rem;height: 19rem;
-    right: 7rem;
-    top: 4rem;
-    background:var(--planCard);
-}
-.arrows{
-    display: flex;
-    gap: 1rem;
-    position: absolute;
-    bottom: 1rem;
-    left: 3rem;
-}
-.arrows>img{
-    width: 1.5rem;
-    cursor: pointer
+    flex-wrap: wrap;
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    width: 100%;
 }
 
+/* ---------- Coluna esquerda (texto) ---------- */
+.left-t {
+    display: flex;
+    flex: 1 1 320px;
+    gap: clamp(0.8rem, 2vw, 1.5rem);
+    flex-direction: column;
+    text-transform: uppercase;
+    color: #fff;
+    min-width: 0;
+}
+
+.left-t > :nth-child(1) {
+    color: var(--orange);
+    font-weight: bold;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    letter-spacing: 1px;
+}
+
+.left-t > :nth-child(2),
+.left-t > :nth-child(3) {
+    font-weight: bold;
+    font-size: clamp(1.6rem, 5vw, 3rem);
+    line-height: 1.15;
+    word-break: break-word;
+}
+
+.left-t > :nth-child(4) {
+    text-transform: none;
+    text-align: left;
+    letter-spacing: 0.4px;
+    line-height: 1.6;
+    font-size: clamp(0.85rem, 2.3vw, 1rem);
+}
+
+/* Autor do testemunho (último span) */
+.left-t > :nth-child(5) {
+    font-size: clamp(0.85rem, 2.2vw, 1rem);
+    text-transform: none;
+    font-weight: 600;
+}
+
+/* ---------- Coluna direita (imagem) ---------- */
+.right-t {
+    flex: 1 1 320px;
+    position: relative;
+    min-height: 26rem;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Imagem principal */
+.right-t > img {
+    position: absolute;
+    width: clamp(12rem, 40%, 17rem);
+    height: clamp(14rem, 45%, 20rem);
+    object-fit: cover;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    border-radius: 0.6rem;
+    z-index: 3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Card decorativo 1 (contorno laranja) */
+.right-t > :nth-child(1) {
+    position: absolute;
+    width: clamp(12rem, 40%, 17rem);
+    height: clamp(14rem, 45%, 20rem);
+    border: 2px solid var(--orange);
+    background: transparent;
+    right: 50%;
+    top: calc(50% - 0.6rem);
+    transform: translate(53%, -50%);
+    border-radius: 0.6rem;
+    z-index: 2;
+}
+
+/* Card decorativo 2 (gradiente) */
+.right-t > :nth-child(2) {
+    position: absolute;
+    width: clamp(12rem, 40%, 17rem);
+    height: clamp(13rem, 43%, 19rem);
+    right: 50%;
+    top: calc(50% + 1rem);
+    transform: translate(47%, -50%);
+    background: var(--planCard);
+    border-radius: 0.6rem;
+    z-index: 1;
+}
+
+/* ---------- Setas ---------- */
+.arrows {
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1.5rem;
+    z-index: 4;
+}
+
+.arrows > img {
+    width: 1.8rem;
+    height: 1.8rem;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 50%;
+    padding: 0.3rem;
+    backdrop-filter: blur(6px);
+}
+
+.arrows > img:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.arrows > img:active {
+    transform: scale(0.95);
+}
+
+/* ============================================================
+   RESPONSIVO — até 767px (mobile)
+   ============================================================ */
 @media screen and (max-width: 767px) {
-    .testimonials{
+    .testimonials {
         flex-direction: column;
+        gap: 1.25rem;
     }
-    .left-t>:nth-child(2)
-    ,.left-t>:nth-child(3){
-        font-size: xx-large;
+
+    .left-t {
+        flex: 1 1 auto;
+        width: 100%;
+        text-align: left;
     }
-    .right-t{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+
+    .left-t > :nth-child(2),
+    .left-t > :nth-child(3) {
+        font-size: 1.7rem;
+    }
+
+    .left-t > :nth-child(4) {
+        text-align: left;
+        line-height: 1.55;
+        letter-spacing: 0.3px;
+    }
+
+    .right-t {
+        flex: 1 1 auto;
+        width: 100%;
+        min-height: 20rem;
+        margin-top: 1rem;
+    }
+
+    /* Esconde os cards decorativos em mobile */
+    .right-t > :nth-child(1),
+    .right-t > :nth-child(2) {
+        display: none;
+    }
+
+    /* Imagem centralizada */
+    .right-t > img {
+        position: relative;
+        width: 65%;
+        max-width: 15rem;
+        height: auto;
+        aspect-ratio: 17 / 20;
+        right: auto;
+        top: auto;
+        transform: none;
+    }
+
+    /* Setas fixas em baixo, sempre visíveis */
+    .arrows {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: 1.5rem;
         justify-content: center;
-        gap: 2rem;
     }
-    .right-t>div{
-        position:relative;
-        display:none;
+
+    .arrows > img {
+        width: 2.2rem;
+        height: 2.2rem;
+        padding: 0.4rem;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
     }
-    .right-t>img{
-        top: 0;
-        right: 0;
-        position:relative;
-        align-self: center;
+}
+
+/* ============================================================
+   RESPONSIVO — tablet (768px – 1024px)
+   ============================================================ */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .right-t {
+        min-height: 22rem;
     }
-    .right-t>:last-child{
-        display: block;
-        bottom: 0;
-        left: 0;
+
+    .right-t > img,
+    .right-t > :nth-child(1),
+    .right-t > :nth-child(2) {
+        width: clamp(10rem, 35%, 15rem);
+        height: clamp(12rem, 40%, 18rem);
     }
 }

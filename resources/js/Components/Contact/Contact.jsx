@@ -83,7 +83,7 @@ const Contact = () => {
                                     value={formData.idade} onChange={handleInputChange} />
                             </div>
                             <div className="app-form-group">
-                                <input className="app-form-control" placeholder="PLANO" id="plano"
+                                <input className="app-form-control" placeholder="ASSUNTO" id="plano"
                                     value={formData.plano} onChange={handleInputChange} />
                             </div>
                             <div className="app-form-group message">

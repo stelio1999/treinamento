@@ -1,6 +1,5 @@
 /* resources/js/App.css */
 
-/* Variáveis globais (ficam no :root, não pintam nada) */
 :root {
     --lightgray: #D9D9D9;
     --gray: #9c9c9c;
@@ -11,16 +10,26 @@
     --appColor: #3c3f45;
 }
 
-/* ⚠️ TUDO o que era global agora está dentro de .app-welcome */
+/* ✅ Reset universal para evitar overflow horizontal */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 .app-welcome {
     background-color: var(--appColor);
     color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 6rem;
-    overflow: hidden;
+    gap: clamp(2rem, 6vw, 6rem);
+    overflow-x: hidden;
     min-height: 100vh;
-    padding: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.app-welcome * {
+    box-sizing: border-box;
+    min-width: 0; /* ✅ impede overflow em flex/grid */
 }
 
 .app-welcome .stroke-text {
@@ -33,15 +42,17 @@
 .app-welcome .btn {
     background-color: black;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
     font-weight: bold;
-    border: 4px solid transparent;
+    border: 2px solid transparent;
     transition: 300ms all;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
     cursor: pointer;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    max-width: 100%;
 }
 
 .app-welcome .btn:hover {
@@ -54,8 +65,8 @@
     border-radius: 50%;
     filter: blur(150px);
     z-index: -9;
+    pointer-events: none;
 }
 
-/* Esconder scrollbar — só dentro do Welcome */
 .app-welcome ::-webkit-scrollbar { display: none; }
 .app-welcome { scrollbar-width: none; }

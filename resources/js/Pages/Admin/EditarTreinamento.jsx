@@ -59,7 +59,7 @@ export default function EditarTreinamento({ treinamento, alunos = [] }) {
             <Head title="Editar Treinamento" />
 
             <div className="flex items-center gap-2 px-2 py-3">
-                <Link href="/admin/dashboard" className="p-2 rounded-full bg-white dark:bg-slate-900">
+                <Link href="/admin/dashboard" className="p-2 rounded-full !text-slate-900 !bg-white dark:!bg-slate-100">
                     <ArrowLeft size={20} />
                 </Link>
                 <h1 className="text-base font-bold">Editar Treinamento</h1>

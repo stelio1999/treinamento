@@ -18,7 +18,15 @@ use App\Http\Controllers\IaController;
 use App\Http\Controllers\Aluno\ProgressoController;
 
 
-Route::get('/', fn() => Inertia::render('Welcome'))->name('welcome');
+Route::get('/', function () {
+    if (auth()->check()) {
+        return auth()->user()->isAdmin()
+            ? redirect('/admin/dashboard')
+            : redirect('/feed');
+    }
+    return Inertia::render('Welcome');
+})->name('welcome');
+
 
 // ---------- Público ----------
 Route::post('/solicitar-inscricao', [PublicController::class, 'solicitarInscricao'])

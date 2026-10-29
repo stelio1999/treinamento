@@ -64,7 +64,7 @@ export default function ResultadoDetalhe({ treino, blocos = [] }) {
 
             {/* Topo */}
             <div className="flex items-center gap-2 px-2 py-3">
-                <Link href="/resultados" className="p-2 rounded-full bg-white dark:bg-slate-900">
+                <Link href="/resultados" className="p-2 rounded-full !text-slate-900 !bg-white dark:!bg-slate-100">
                     <ArrowLeft size={20} />
                 </Link>
                 <h1 className="text-base font-bold truncate">{treino.titulo}</h1>
@@ -206,7 +206,7 @@ export default function ResultadoDetalhe({ treino, blocos = [] }) {
                     <div className="card-fb p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <PieIcon size={16} className="text-[#0A2540] dark:text-blue-400" />
-                            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Visão geral</h3>
+                            <h3 className="text-sm font-bold !text-slate-900 dark:!text-white  ">Visão geral</h3>
                         </div>
                         <div className="relative w-full h-52">
                             <ResponsiveContainer width="100%" height="100%">
@@ -249,7 +249,7 @@ export default function ResultadoDetalhe({ treino, blocos = [] }) {
                     <div className="card-fb p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <TrendingUp size={16} className="text-[#0A2540] dark:text-blue-400" />
-                            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Estado de cada bloco</h3>
+                            <h3 className="text-sm font-bold !text-slate-900 dark:!text-white">Estado de cada bloco</h3>
                         </div>
                         <div className="w-full h-56">
                             <ResponsiveContainer width="100%" height="100%">

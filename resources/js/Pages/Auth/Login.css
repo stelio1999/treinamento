@@ -30,20 +30,21 @@
     right: -8rem;
     background: rgba(244, 47, 21, 0.35);
 }
+.login-blur-1,
+.login-blur-2 {
+    position: absolute;      /* ← ISTO FALTAVA */
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(80px);      /* se o .blur global não fizer já o blur */
+}
 
 /* Card com efeito vidro */
-.login-card {
+.login-form-wrap {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 26rem;
-    padding: 2.25rem 1.75rem;
-    border-radius: 1.25rem;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    max-width: 26rem;   /* ← em desktop fica contido; em mobile ocupa tudo */
     color: #fff;
 }
 
@@ -233,8 +234,9 @@
 
 /* Responsivo */
 @media (max-width: 480px) {
-    .login-card {
-        padding: 1.75rem 1.25rem;
+    .login-form-wrap {
+        max-width: 100%;
+        padding: 0;           /* ✅ sem padding a apertar */
     }
     .login-title {
         font-size: 1.2rem;

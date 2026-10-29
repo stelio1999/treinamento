@@ -26,10 +26,9 @@ export default function Login() {
     return (
         <>
             <Head title="Entrar" />
-            <div className="app-welcome" style={{ justifyContent: 'center', alignItems: 'center' }}>
 
             <div className="login-page">
-                {/* Blur decorativo igual ao Welcome */}
+                {/* Blur decorativo */}
                 <div className="blur login-blur-1" />
                 <div className="blur login-blur-2" />
 
@@ -37,9 +36,9 @@ export default function Login() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={transition}
-                    className="login-card"
+                    className="login-form-wrap"
                 >
-                    {/* Logo / título */}
+                    {/* Cabeçalho */}
                     <div className="login-header">
                         <div className="login-logo">FC</div>
                         <h1 className="login-title">
@@ -129,11 +128,11 @@ export default function Login() {
                             </Link>
                         </p>
                         <p className="login-contact">
-                            Contacta-nos: <a href="mailto:info@fitclub.co.mz">info@fitclub.co.mz</a>
+                            Contacta-nos:{" "}
+                            <a href="mailto:info@fitclub.co.mz">info@fitclub.co.mz</a>
                         </p>
                     </div>
                 </motion.div>
-            </div>
             </div>
         </>
     );

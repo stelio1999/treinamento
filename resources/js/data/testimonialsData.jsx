@@ -1,6 +1,6 @@
 // resources/js/data/testimonialsData.jsx
-import image1 from "../assets/t-image1.png";
-import image2 from "../assets/t-image2.jpg";
+import image1 from "../assets/t-image1.jpg";
+import image2 from "../assets/t-image2.png";
 import image3 from "../assets/t-image3.jpg";
 
 export const testimonialsData = [
@@ -15,7 +15,7 @@ export const testimonialsData = [
     image: image2,
     review:
       "Ambiente fantástico, treinadores que realmente se importam e resultados visíveis em pouco tempo.",
-    name: "JOÃO KEVIN",
+    name: "VASCO GUAMBE",
     status: "TREINADOR",
   },
   {
